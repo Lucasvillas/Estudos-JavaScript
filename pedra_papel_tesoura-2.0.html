@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedra Papel Tesoura</title>
+    <!-- Tag para o CSS -->
     <style>
         body {
             background-color: rgb(25, 25, 25);
@@ -53,14 +54,19 @@
     </style>
 </head>
 <body>
+    <!-- titulo do jogo -->
     <p class="titulo">Pedra Papel Tesoura!</p>
+    <!-- pedido de movimentação do jogador -->
     <p class="pedido">Escolha Um Movimento</p>
+    <!-- opções de movimento -->
     <button onclick="jogar('✊')">✊</button>
     <button onclick="jogar('✋')">✋</button>
     <button onclick="jogar('✌️')">✌️</button>
+    <!-- resultado e status do jogo -->
     <p id="result">Seu Movimento =     = Movimento do Computador</p>
     <p id="stats">Vitorias: 0  Empates: 0 Derrotas: 0</p>
     <script>
+        // declaração de variaveis
         let compMove;
         let resultado;
         let quantV = 0;
@@ -69,6 +75,7 @@
         const resultDoJogo = document.getElementById('result');
         const statusElement = document.getElementById('stats');
 
+        // função que calcula o movimento do computador
         function calcResultado(){
             let compChoice = Math.random();
 
@@ -81,6 +88,7 @@
             }
         }
 
+        // função que compara a jogada do player e do computador
         function jogar(escolha) {
             calcResultado();
 
@@ -118,7 +126,8 @@
                     quantE++;
                 }
             }
-
+    
+            // declaração do status e resultado do jogo
             resultDoJogo.textContent = resultado;
     
             let status = `Vitorias: ${quantV}  Empates: ${quantE} Derrotas: ${quantD}`;
