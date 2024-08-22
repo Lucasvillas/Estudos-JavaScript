@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra Papel Tesoura</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+            color: white;
+            font-family: Impact;
+            text-align: center;
+        }
+
+        .titulo {
+            font-size: 40px;
+        }
+
+        .pedido {
+            font-size: 25px;
+        }
+        
+        button {
+            height: 180px;
+            width: 180px;
+            background-color: transparent;
+            border: 5px solid white;
+            border-radius: 90px;
+            font-size: 60px;
+            margin-right: 40px;
+            margin-left: 40px;
+            margin-top: 150px;
+            margin-bottom: 100px;
+            transition: height 0.7s, width 0.7s, border-radius 0.7s, border 0.7s, margin-left 0.7s, margin-right 0.7s, margin-top 0.7s, margin-bottom 0.7s, font-size 0.7s;
+        }
+        
+        button:hover {
+            height: 240px;
+            width: 240px;
+            border-radius: 120px;
+            border: 3px solid white;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 90px;
+            margin-bottom: 40px;
+            font-size: 100px;
+        }
+        
+        #result {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p class="titulo">Pedra Papel Tesoura!</p>
+    <p class="pedido">Escolha Um Movimento</p>
+    <button onclick="jogar('✊')">✊</button>
+    <button onclick="jogar('✋')">✋</button>
+    <button onclick="jogar('✌️')">✌️</button>
+    <p id="result">Seu Movimento =     = Movimento do Computador</p>
+    <p id="stats">Vitorias: 0  Empates: 0 Derrotas: 0</p>
+    <script>
+        let compMove;
+        let resultado;
+        let quantV = 0;
+        let quantD = 0;
+        let quantE = 0;
+        const resultDoJogo = document.getElementById('result');
+        const statusElement = document.getElementById('stats');
+
+        function calcResultado(){
+            let compChoice = Math.random();
+
+            if(compChoice >= 0 && compChoice < 1/3) {
+                compMove = '✊'
+            } else if(compChoice >= 1/3 && compChoice < 2/3) {
+                compMove = '✋'
+            } else if(compChoice >= 2/3 && compChoice <= 3/3) {
+                compMove = '✌️'
+            }
+        }
+
+        function jogar(escolha) {
+            calcResultado();
+
+            if (escolha === '✊') {
+                if(compMove === '✊'){
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantE++;
+                } else if(compMove === '✋') {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantD++;
+                } else {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantV++;
+                }
+            } else if (escolha === '✋') {
+                if(compMove === '✊'){
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantV++;
+                } else if(compMove === '✋') {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantE++;
+                } else {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantD++;
+                }
+            } else {
+                if(compMove === '✊'){
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantD++;
+                } else if(compMove === '✋') {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantV++;
+                } else {
+                    resultado = `Seu Movimento = ${escolha}  ${compMove} = Movimento do Computador`;
+                    quantE++;
+                }
+            }
+
+            resultDoJogo.textContent = resultado;
+    
+            let status = `Vitorias: ${quantV}  Empates: ${quantE} Derrotas: ${quantD}`;
+            statusElement.textContent = status;
+        }
+    </script>
+</body>
+</html>
