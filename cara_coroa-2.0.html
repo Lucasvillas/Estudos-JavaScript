@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara ou Coroa</title>
+    <style>
+        body {
+            background-color: rgb(25, 25, 25);
+            color: white;
+            font-family: Impact;
+            text-align: center;
+        }
+
+        .titulo {
+            font-size: 40px;
+        }
+
+        .pedido {
+            font-size: 25px;
+        }
+
+        button {
+            height: 180px;
+            width: 180px;
+            background-color: transparent;
+            border: 5px solid white;
+            border-radius: 90px;
+            color: gold;
+            font-size: 30px;
+            font-weight: bold;
+            margin-right: 40px;
+            margin-left: 40px;
+            margin-top: 150px;
+            margin-bottom: 100px;
+            transition: height 0.7s, width 0.7s, border-radius 0.7s, border 0.7s, margin-left 0.7s, margin-right 0.7s, margin-top 0.7s, margin-bottom 0.7s;
+        }
+
+        button:hover {
+            height: 240px;
+            width: 240px;
+            border-radius: 120px;
+            border: 3px solid white;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 90px;
+            margin-bottom: 40px;
+        }
+
+        #statusDoJogo {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p class="titulo">Jogo de Cara ou Coroa!</p>
+    <p class="pedido">Adivinhe o resultado</p>
+    <button onclick="jogar('Cara')">Cara</button>
+    <button onclick="jogar('Coroa')">Coroa</button>
+    <p id="statusDoJogo"></p>
+    <p id="resultados"></p>
+
+    <script>
+        let gueass;
+        let resultado;
+        let quantV = 0;
+        let quantD = 0;
+        const statusElemento = document.getElementById('statusDoJogo');
+        const resultDoJogo = document.getElementById('resultados');
+
+        function calcResultado() {
+            let compMove = Math.random();
+
+            if (compMove >= 0 && compMove < 1 / 2) {
+                gueass = 'Cara';
+            } else {
+                gueass = 'Coroa';
+            }
+        }
+
+        function jogar(escolha) {
+            calcResultado();
+
+            if (escolha === 'Cara') {
+                if (gueass === 'Cara') {
+                    resultado = 'Você ganhou!';
+                    quantV++;
+                } else {
+                    resultado = 'Você perdeu!';
+                    quantD++;
+                }
+            } else if (escolha === 'Coroa') {
+                if (gueass === 'Coroa') {
+                    resultado = 'Você ganhou!';
+                    quantV++;
+                } else {
+                    resultado = 'Você perdeu!';
+                    quantD++;
+                }
+            }
+
+            const status = `Caiu ${gueass}. ${resultado}`;
+            statusElemento.textContent = status;
+
+            const quant = `Vitorias: ${quantV} \nDerrotas: ${quantD}`;
+            resultDoJogo.textContent = quant;
+        }
+    </script>
+</body>
+</html>
